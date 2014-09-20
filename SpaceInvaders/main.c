@@ -7,6 +7,7 @@
 //
 
 #include <stdio.h>
+#include <SDL2/SDL.h>
 
 int main(int argc, const char * argv[])
 {
@@ -15,4 +16,3 @@ int main(int argc, const char * argv[])
     printf("Hello, World!\n");
     return 0;
 }
-
