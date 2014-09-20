@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		9C443B1619CE30D9002A0297 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C443B1519CE30D9002A0297 /* main.c */; };
 		9C443B1819CE30D9002A0297 /* SpaceInvaders.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9C443B1719CE30D9002A0297 /* SpaceInvaders.1 */; };
+		9C443B1F19CE3155002A0297 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9C443B1E19CE3155002A0297 /* SDL2.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -28,6 +29,7 @@
 		9C443B1219CE30D9002A0297 /* SpaceInvaders */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SpaceInvaders; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C443B1519CE30D9002A0297 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		9C443B1719CE30D9002A0297 /* SpaceInvaders.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = SpaceInvaders.1; sourceTree = "<group>"; };
+		9C443B1E19CE3155002A0297 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,6 +37,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9C443B1F19CE3155002A0297 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -44,6 +47,7 @@
 		9C443B0919CE30D9002A0297 = {
 			isa = PBXGroup;
 			children = (
+				9C443B1E19CE3155002A0297 /* SDL2.framework */,
 				9C443B1419CE30D9002A0297 /* SpaceInvaders */,
 				9C443B1319CE30D9002A0297 /* Products */,
 			);
@@ -197,6 +201,11 @@
 		9C443B1C19CE30D9002A0297 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -204,6 +213,11 @@
 		9C443B1D19CE30D9002A0297 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(LOCAL_LIBRARY_DIR)/Frameworks",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -227,6 +241,7 @@
 				9C443B1D19CE30D9002A0297 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
