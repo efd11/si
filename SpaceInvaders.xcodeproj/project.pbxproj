@@ -7,7 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		480F1FC619CE522300256A55 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 480F1FC519CE522300256A55 /* SDL2.framework */; };
+		480F1FC819CECF4000256A55 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 480F1FC719CECF4000256A55 /* SDL2.framework */; };
+		480F1FCA19CEDDF900256A55 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 480F1FC919CEDDF900256A55 /* SDL2_image.framework */; };
 		9C443B1619CE30D9002A0297 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C443B1519CE30D9002A0297 /* main.c */; };
 		9C443B1819CE30D9002A0297 /* SpaceInvaders.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9C443B1719CE30D9002A0297 /* SpaceInvaders.1 */; };
 /* End PBXBuildFile section */
@@ -26,7 +27,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		480F1FC519CE522300256A55 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		480F1FC719CECF4000256A55 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
+		480F1FC919CEDDF900256A55 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
 		9C443B1219CE30D9002A0297 /* SpaceInvaders */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SpaceInvaders; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C443B1519CE30D9002A0297 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		9C443B1719CE30D9002A0297 /* SpaceInvaders.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = SpaceInvaders.1; sourceTree = "<group>"; };
@@ -37,7 +39,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				480F1FC619CE522300256A55 /* SDL2.framework in Frameworks */,
+				480F1FCA19CEDDF900256A55 /* SDL2_image.framework in Frameworks */,
+				480F1FC819CECF4000256A55 /* SDL2.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -47,7 +50,8 @@
 		9C443B0919CE30D9002A0297 = {
 			isa = PBXGroup;
 			children = (
-				480F1FC519CE522300256A55 /* SDL2.framework */,
+				480F1FC919CEDDF900256A55 /* SDL2_image.framework */,
+				480F1FC719CECF4000256A55 /* SDL2.framework */,
 				9C443B1419CE30D9002A0297 /* SpaceInvaders */,
 				9C443B1319CE30D9002A0297 /* Products */,
 			);
