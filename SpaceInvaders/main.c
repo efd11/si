@@ -19,13 +19,15 @@
 SDL_Window *window;
 SDL_Renderer *renderer;
 
-SDL_Surface *sBackground;
-SDL_Texture *tBackground, *fusee;
-
+static SDL_Surface *sBackground;
+static SDL_Texture *tBackground;
+static SDL_Texture *fusee;
+static SDL_Texture *missile;
 static SDL_Texture *invader;
 
 SDL_Rect bpos;
-SDL_Rect mpos, mpart;
+SDL_Rect mpos;
+SDL_Rect missilepos;
 
 
 
@@ -69,10 +71,7 @@ void init()
     mpos.w = 81;
     mpos.h = 50;
     
-//    mpart.x = 0;
-//    mpart.y = 0;
-//    mpart.h = 23;
-//    mpart.w = 37;
+    
 }
 
 void init_invaders() {
@@ -102,6 +101,17 @@ void init_invaders() {
         x = 100;
         y += E_HEIGHT + 30;
     }
+}
+
+void display_missile() {
+    
+    missilepos.x = mpos.x + (mpos.w / 2) - (missilepos.w /2);
+    missilepos.y = mpos.y - missilepos.h;
+    missilepos.h = 24;
+    missilepos.w = 10;
+    
+    SDL_RenderCopy(renderer, fusee, 0, &missilepos);
+    
 }
 
 void display_invaders() {
@@ -166,7 +176,7 @@ void display_invaders() {
                 dest.w = invaders.enemy[i][j].invaderpos.w;
                 dest.h = invaders.enemy[i][j].invaderpos.h;
                 
-//                SDL_BlitSurface(invadersmap, &src, sBackground, &dest);
+//              SDL_BlitSurface(invadersmap, &src, sBackground, &dest);
                 SDL_RenderCopy(renderer, invader, 0, &dest);
             }
         }
@@ -188,6 +198,7 @@ void load()
     tBackground = IMG_LoadTexture(renderer, "background.jpg");
     fusee = IMG_LoadTexture(renderer, "fusee.png");
     invader = IMG_LoadTexture(renderer, "invader.png");
+    missile = IMG_LoadTexture(renderer, "missile.png");
     SDL_QueryTexture(tBackground, 0, 0, &w, &h);
 }
 
@@ -251,6 +262,7 @@ int main(int argc, const char * argv[])
         SDL_RenderCopy(renderer, tBackground, 0, &bpos);
         SDL_RenderCopy(renderer, fusee, 0, &mpos);
         display_invaders();
+        display_missile();
         SDL_RenderPresent(renderer);
         
         if (right)

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		480F1FC819CECF4000256A55 /* SDL2.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 480F1FC719CECF4000256A55 /* SDL2.framework */; };
 		480F1FCA19CEDDF900256A55 /* SDL2_image.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 480F1FC919CEDDF900256A55 /* SDL2_image.framework */; };
+		480F1FCE19CF59D900256A55 /* missile.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 480F1FCD19CF59C500256A55 /* missile.png */; };
 		9C443B1619CE30D9002A0297 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C443B1519CE30D9002A0297 /* main.c */; };
 		9C90DE7719CF306F0000569B /* fusee.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9C90DE7619CF30660000569B /* fusee.png */; };
 		9C90DE7919CF30BC0000569B /* background.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9C90DE7819CF30B40000569B /* background.jpg */; };
@@ -18,21 +19,23 @@
 /* Begin PBXCopyFilesBuildPhase section */
 		9C90DE7419CF1FFF0000569B /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				480F1FCE19CF59D900256A55 /* missile.png in CopyFiles */,
 				9C90DE7B19CF52570000569B /* invader.png in CopyFiles */,
 				9C90DE7919CF30BC0000569B /* background.jpg in CopyFiles */,
 				9C90DE7719CF306F0000569B /* fusee.png in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		480F1FC719CECF4000256A55 /* SDL2.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2.framework; path = ../../../../../../../../Library/Frameworks/SDL2.framework; sourceTree = "<group>"; };
 		480F1FC919CEDDF900256A55 /* SDL2_image.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_image.framework; path = ../../../../../../../../Library/Frameworks/SDL2_image.framework; sourceTree = "<group>"; };
+		480F1FCD19CF59C500256A55 /* missile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = missile.png; sourceTree = "<group>"; };
 		9C443B1219CE30D9002A0297 /* SpaceInvaders */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SpaceInvaders; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C443B1519CE30D9002A0297 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		9C90DE7619CF30660000569B /* fusee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fusee.png; sourceTree = "<group>"; };
@@ -86,6 +89,7 @@
 				9C90DE7819CF30B40000569B /* background.jpg */,
 				9C90DE7619CF30660000569B /* fusee.png */,
 				9C90DE7A19CF52430000569B /* invader.png */,
+				480F1FCD19CF59C500256A55 /* missile.png */,
 			);
 			name = Ressources;
 			sourceTree = "<group>";
