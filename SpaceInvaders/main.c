@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
-#include </Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h>
+#include <SDL2_image/SDL_image.h>
 
 #define  SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 800
