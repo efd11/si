@@ -58,7 +58,6 @@ int main(int argc, const char * argv[])
     
     // insert code here...
     
-    
     init();
     load();
     while (i == 1) {
