@@ -104,7 +104,7 @@ void init_invaders() {
     }
 }
 
-void draw_invaders() {
+void display_invaders() {
     
     SDL_Rect src, dest;
     int i,j;
@@ -250,7 +250,7 @@ int main(int argc, const char * argv[])
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, tBackground, 0, &bpos);
         SDL_RenderCopy(renderer, fusee, 0, &mpos);
-        draw_invaders();
+        display_invaders();
         SDL_RenderPresent(renderer);
         
         if (right)
