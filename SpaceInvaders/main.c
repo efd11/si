@@ -31,10 +31,10 @@ void init()
     window = SDL_CreateWindow("SPACE INVAIDERS", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
     renderer = SDL_CreateRenderer(window, -1, 0);
     
-    bpos->x = 0;
-    bpos->y = 0;
-    bpos->w = SCREEN_WIDTH;
-    bpos->h = SCREEN_HEIGHT;
+   // bpos->x = 0;
+   // bpos->y = 0;
+   // bpos->w = SCREEN_WIDTH;
+   // bpos->h = SCREEN_HEIGHT;
 }
 
 void destroy()
@@ -49,7 +49,7 @@ void destroy()
 void load()
 {
   
-    tBackground = IMG_LoadTexture(renderer, "background.jpg");
+    tBackground = IMG_LoadTexture(renderer, "/Users/ghassenzayani/Desktop/SPACE INVADERS/release/si/SpaceInvaders/background.jpg");
 }
 int i = 1;
 
