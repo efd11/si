@@ -62,13 +62,19 @@ int main(int argc, const char * argv[])
     load();
     while (i == 1) {
         
-        //Uint32 towait;
-        //Uint32 time = SDL_GetTicks();
+        Uint32 towait;
+        Uint32 time = SDL_GetTicks();
         
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, tBackground, 0, bpos);
         SDL_RenderPresent(renderer);
-        
+        towait = SDL_GetTicks() - time;
+        if (towait < 16) {
+            SDL_Delay(16 - towait);
+            if (towait < 16) {
+                SDL_Delay(16 - towait);
+            }
+        }
     }
     
     destroy();
