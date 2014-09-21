@@ -8,7 +8,7 @@
 
 #include <stdio.h>
 #include <SDL2/SDL.h>
-#include </Library/Frameworks/SDL2_image.framework/Headers/SDL_image.h>
+#include <SDL2_image/SDL_image.h>
 
 #define  SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 800
@@ -45,11 +45,9 @@ void destroy()
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
-
 void load()
 {
-  
-    tBackground = IMG_LoadTexture(renderer, "/Users/ghassenzayani/Desktop/SPACE INVADERS/release/si/SpaceInvaders/background.jpg");
+    tBackground = IMG_LoadTexture(renderer, "background.jpg");
 }
 int i = 1;
 
