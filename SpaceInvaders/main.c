@@ -10,8 +10,8 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 
-#define SCREEN_WIDTH 1280
-#define SCREEN_HEIGHT 800
+#define SCREEN_WIDTH 800
+#define SCREEN_HEIGHT 650
 
 SDL_Window *window;
 SDL_Renderer *renderer;
@@ -21,6 +21,8 @@ SDL_Texture *tBackground, *fusee;
 
 SDL_Rect bpos;
 SDL_Rect mpos, mpart;
+
+int right, left = 0;
 
 void init()
 {
@@ -38,15 +40,15 @@ void init()
     bpos.w = SCREEN_WIDTH;
     bpos.h = SCREEN_HEIGHT;
     
-    mpos.x = 0;
-    mpos.y = SCREEN_HEIGHT - 105;
-    mpos.w = 50;
-    mpos.h = 75;
+    mpos.x = 50;
+    mpos.y = SCREEN_HEIGHT - 100;
+    mpos.w = 81;
+    mpos.h = 50;
     
-    mpart.x = 0;
-    mpart.y = 0;
-    mpart.h = 23;
-    mpart.w = 37;
+//    mpart.x = 0;
+//    mpart.y = 0;
+//    mpart.h = 23;
+//    mpart.w = 37;
 }
 
 void destroy()
@@ -65,6 +67,46 @@ void load()
     SDL_QueryTexture(tBackground, 0, 0, &w, &h);
 }
 
+void event()
+{
+    SDL_Event e;
+    while (SDL_PollEvent(&e))
+    {
+        switch (e.type)
+        {
+            case SDL_QUIT:
+                exit(0);
+                break;
+            case SDL_KEYDOWN:
+                    switch (e.key.keysym.sym)
+                    {
+                    case SDLK_RIGHT:
+                            right = 1;
+                            break;
+                    case SDLK_LEFT:
+                            left = 1;
+                            break;
+                }
+            break;
+            case SDL_KEYUP:
+                    switch (e.key.keysym.sym)
+                    {
+                    case SDLK_RIGHT:
+                            right = 0;
+                            break;
+                    case SDLK_LEFT:
+                            left = 0;
+                            break;
+                
+            }
+            break;
+        default:
+            break;
+                
+        }
+    }
+}
+
 int i = 1;
 
 int main(int argc, const char * argv[])
@@ -79,10 +121,21 @@ int main(int argc, const char * argv[])
         Uint32 towait;
         Uint32 time = SDL_GetTicks();
         
+        event();
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, tBackground, 0, &bpos);
-        SDL_RenderCopy(renderer, fusee, &mpart, &mpos);
+        SDL_RenderCopy(renderer, fusee, 0, &mpos);
         SDL_RenderPresent(renderer);
+        
+        if (right)
+        {
+            mpos.x += 5;
+        }
+        if (left)
+        {
+            mpos.x -= 5;
+        }
+        
         towait = SDL_GetTicks() - time;
         if (towait < 16) {
             SDL_Delay(16 - towait);
