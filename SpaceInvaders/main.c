@@ -16,6 +16,10 @@
 SDL_Window *window;
 SDL_Renderer *renderer;
 
+SDL_Surface *sBackground;
+SDL_Texture *tBackground;
+SDL_Rect *bpos;
+
 void init()
 {
     
@@ -41,11 +45,9 @@ void destroy()
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
-
 void load()
 {
-  
-    tBackground = IMG_LoadTexture(renderer, "/Users/ghassenzayani/Desktop/SPACE INVADERS/release/si/SpaceInvaders/background.jpg");
+    tBackground = IMG_LoadTexture(renderer, "background.jpg");
 }
 int i = 1;
 
