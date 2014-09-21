@@ -10,7 +10,7 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 
-#define  SCREEN_WIDTH 1280
+#define SCREEN_WIDTH 1280
 #define SCREEN_HEIGHT 800
 
 SDL_Window *window;
