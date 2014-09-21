@@ -48,7 +48,7 @@ struct invaders_t {
 
 struct invaders_t invaders;
 
-int right, left = 0;
+int right, left, up = 0;
 
 void init()
 {
@@ -221,6 +221,9 @@ void event()
                     case SDLK_LEFT:
                         left = 1;
                         break;
+                    case SDLK_UP:
+                        up = 1;
+                        break;
                 }
             break;
             case SDL_KEYUP:
@@ -257,13 +260,12 @@ int main(int argc, const char * argv[])
         Uint32 towait;
         Uint32 time = SDL_GetTicks();
         
-        event();
+        
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, tBackground, 0, &bpos);
         SDL_RenderCopy(renderer, fusee, 0, &mpos);
         display_invaders();
-        display_missile();
-        SDL_RenderPresent(renderer);
+        event();
         
         if (right)
         {
@@ -273,6 +275,12 @@ int main(int argc, const char * argv[])
         {
             mpos.x -= 8;
         }
+        if (up) {
+            display_missile();
+        }
+        
+        SDL_RenderPresent(renderer);
+
         
         towait = SDL_GetTicks() - time;
         if (towait < 16) {
