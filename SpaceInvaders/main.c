@@ -13,14 +13,38 @@
 #define SCREEN_WIDTH 800
 #define SCREEN_HEIGHT 650
 
+#define E_WIDTH 30
+#define E_HEIGHT 30
+
 SDL_Window *window;
 SDL_Renderer *renderer;
 
 SDL_Surface *sBackground;
 SDL_Texture *tBackground, *fusee;
 
+static SDL_Texture *invader;
+
 SDL_Rect bpos;
 SDL_Rect mpos, mpart;
+
+
+
+struct enemy_t {
+    SDL_Rect invaderpos;
+    unsigned int alive;
+};
+
+struct invaders_t {
+    
+    struct enemy_t enemy[5][10];
+    unsigned int killed;
+   	int state;
+    int state_speed;
+    Uint32 state_time;
+
+};
+
+struct invaders_t invaders;
 
 int right, left = 0;
 
@@ -51,6 +75,104 @@ void init()
 //    mpart.w = 37;
 }
 
+void init_invaders() {
+    
+
+    invaders.killed = 0;
+    invaders.state_speed = 1000;
+    invaders.state_time = SDL_GetTicks();
+
+    int i,j;
+    int x = 100;
+    int y = 50;
+    
+    for (i = 0; i < 5; i++) {
+        
+        for (j = 0; j < 10; j++) {
+            
+            invaders.enemy[i][j].alive = 1;
+            invaders.enemy[i][j].invaderpos.x = x;
+            invaders.enemy[i][j].invaderpos.y = y;
+            invaders.enemy[i][j].invaderpos.w = E_WIDTH;
+            invaders.enemy[i][j].invaderpos.h = E_HEIGHT;
+            
+            x += E_WIDTH + 30;
+        }
+        
+        x = 100;
+        y += E_HEIGHT + 30;
+    }
+}
+
+void draw_invaders() {
+    
+    SDL_Rect src, dest;
+    int i,j;
+    
+    src.w = E_WIDTH;
+    src.h = E_HEIGHT;
+    
+    for (i = 0; i < 5; i++) {
+        
+        for (j = 0; j < 10; j++) {
+            
+            if (invaders.enemy[i][j].alive == 1) {
+                
+                //purple
+                if(i == 0) {
+                    
+                    if (invaders.state == 0) {
+                        
+                        src.x = 0;
+                        src.y = 0;
+                        
+                    } else {
+                        
+                        src.x = 30;
+                        src.y = 0;
+                    }
+                    
+                    //green
+                } else if (i > 0 && i < 3) {
+                    
+                    if (invaders.state == 0) {
+                        
+                        src.x = 0;
+                        src.y = E_HEIGHT;
+                        
+                    } else {
+                        
+                        src.x = 30;
+                        src.y = E_HEIGHT;
+                    }
+                    
+                    //red
+                } else {
+                    
+                    if (invaders.state == 0) {
+                        
+                        src.x = 0;
+                        src.y = E_HEIGHT * 2;
+                        
+                    } else {
+                        
+                        src.x = 30;
+                        src.y = E_HEIGHT * 2;	
+                    }
+                }
+                
+                dest.x = invaders.enemy[i][j].invaderpos.x;
+                dest.y = invaders.enemy[i][j].invaderpos.y;
+                dest.w = invaders.enemy[i][j].invaderpos.w;
+                dest.h = invaders.enemy[i][j].invaderpos.h;
+                
+//                SDL_BlitSurface(invadersmap, &src, sBackground, &dest);
+                SDL_RenderCopy(renderer, invader, 0, &dest);
+            }
+        }
+    }
+}
+
 void destroy()
 {
     SDL_DestroyTexture(tBackground);
@@ -59,11 +181,13 @@ void destroy()
     SDL_DestroyWindow(window);
     SDL_Quit();
 }
+
 void load()
 {
     int w, h;
     tBackground = IMG_LoadTexture(renderer, "background.jpg");
     fusee = IMG_LoadTexture(renderer, "fusee.png");
+    invader = IMG_LoadTexture(renderer, "invader.png");
     SDL_QueryTexture(tBackground, 0, 0, &w, &h);
 }
 
@@ -78,29 +202,29 @@ void event()
                 exit(0);
                 break;
             case SDL_KEYDOWN:
-                    switch (e.key.keysym.sym)
-                    {
+                switch (e.key.keysym.sym)
+                {
                     case SDLK_RIGHT:
-                            right = 1;
-                            break;
+                        right = 1;
+                        break;
                     case SDLK_LEFT:
-                            left = 1;
-                            break;
+                        left = 1;
+                        break;
                 }
             break;
             case SDL_KEYUP:
-                    switch (e.key.keysym.sym)
-                    {
+                switch (e.key.keysym.sym)
+                {
                     case SDLK_RIGHT:
-                            right = 0;
-                            break;
+                        right = 0;
+                        break;
                     case SDLK_LEFT:
-                            left = 0;
-                            break;
+                        left = 0;
+                        break;
                 
-            }
+                }
             break;
-        default:
+            default:
             break;
                 
         }
@@ -115,6 +239,7 @@ int main(int argc, const char * argv[])
     // insert code here...
     
     init();
+    init_invaders();
     load();
     while (i == 1) {
         
@@ -125,15 +250,16 @@ int main(int argc, const char * argv[])
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, tBackground, 0, &bpos);
         SDL_RenderCopy(renderer, fusee, 0, &mpos);
+        draw_invaders();
         SDL_RenderPresent(renderer);
         
         if (right)
         {
-            mpos.x += 5;
+            mpos.x += 8;
         }
         if (left)
         {
-            mpos.x -= 5;
+            mpos.x -= 8;
         }
         
         towait = SDL_GetTicks() - time;

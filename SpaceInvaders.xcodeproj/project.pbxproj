@@ -12,6 +12,7 @@
 		9C443B1619CE30D9002A0297 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C443B1519CE30D9002A0297 /* main.c */; };
 		9C90DE7719CF306F0000569B /* fusee.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9C90DE7619CF30660000569B /* fusee.png */; };
 		9C90DE7919CF30BC0000569B /* background.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9C90DE7819CF30B40000569B /* background.jpg */; };
+		9C90DE7B19CF52570000569B /* invader.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9C90DE7A19CF52430000569B /* invader.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -21,6 +22,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				9C90DE7B19CF52570000569B /* invader.png in CopyFiles */,
 				9C90DE7919CF30BC0000569B /* background.jpg in CopyFiles */,
 				9C90DE7719CF306F0000569B /* fusee.png in CopyFiles */,
 			);
@@ -35,6 +37,7 @@
 		9C443B1519CE30D9002A0297 /* main.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		9C90DE7619CF30660000569B /* fusee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fusee.png; sourceTree = "<group>"; };
 		9C90DE7819CF30B40000569B /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
+		9C90DE7A19CF52430000569B /* invader.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = invader.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,6 +85,7 @@
 			children = (
 				9C90DE7819CF30B40000569B /* background.jpg */,
 				9C90DE7619CF30660000569B /* fusee.png */,
+				9C90DE7A19CF52430000569B /* invader.png */,
 			);
 			name = Ressources;
 			sourceTree = "<group>";
