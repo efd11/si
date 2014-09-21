@@ -17,8 +17,10 @@ SDL_Window *window;
 SDL_Renderer *renderer;
 
 SDL_Surface *sBackground;
-SDL_Texture *tBackground;
-SDL_Rect *bpos;
+SDL_Texture *tBackground, *fusee;
+
+SDL_Rect bpos;
+SDL_Rect mpos, mpart;
 
 void init()
 {
@@ -31,10 +33,20 @@ void init()
     window = SDL_CreateWindow("SPACE INVAIDERS", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
     renderer = SDL_CreateRenderer(window, -1, 0);
     
-   // bpos->x = 0;
-   // bpos->y = 0;
-   // bpos->w = SCREEN_WIDTH;
-   // bpos->h = SCREEN_HEIGHT;
+    bpos.x = 0;
+    bpos.y = 0;
+    bpos.w = SCREEN_WIDTH;
+    bpos.h = SCREEN_HEIGHT;
+    
+    mpos.x = 0;
+    mpos.y = SCREEN_HEIGHT - 105;
+    mpos.w = 50;
+    mpos.h = 75;
+    
+    mpart.x = 0;
+    mpart.y = 0;
+    mpart.h = 23;
+    mpart.w = 37;
 }
 
 void destroy()
@@ -47,8 +59,12 @@ void destroy()
 }
 void load()
 {
+    int w, h;
     tBackground = IMG_LoadTexture(renderer, "background.jpg");
+    fusee = IMG_LoadTexture(renderer, "/Users/ghassenzayani/Desktop/SPACE INVADERS/fusee.png");
+    SDL_QueryTexture(tBackground, 0, 0, &w, &h);
 }
+
 int i = 1;
 
 int main(int argc, const char * argv[])
@@ -64,7 +80,8 @@ int main(int argc, const char * argv[])
         Uint32 time = SDL_GetTicks();
         
         SDL_RenderClear(renderer);
-        SDL_RenderCopy(renderer, tBackground, 0, bpos);
+        SDL_RenderCopy(renderer, tBackground, 0, &bpos);
+        SDL_RenderCopy(renderer, fusee, &mpart, &mpos);
         SDL_RenderPresent(renderer);
         towait = SDL_GetTicks() - time;
         if (towait < 16) {
