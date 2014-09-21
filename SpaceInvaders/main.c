@@ -61,7 +61,7 @@ void load()
 {
     int w, h;
     tBackground = IMG_LoadTexture(renderer, "background.jpg");
-    fusee = IMG_LoadTexture(renderer, "/Users/ghassenzayani/Desktop/SPACE INVADERS/fusee.png");
+    fusee = IMG_LoadTexture(renderer, "fusee.png");
     SDL_QueryTexture(tBackground, 0, 0, &w, &h);
 }
 
