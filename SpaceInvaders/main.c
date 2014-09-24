@@ -9,182 +9,38 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
+#include <SDL2_mixer/SDL_mixer.h>
+#include "spaceInvaders.h"
 
-#define SCREEN_WIDTH 800
-#define SCREEN_HEIGHT 650
-
-#define E_WIDTH 30
-#define E_HEIGHT 30
-
-SDL_Window *window;
-SDL_Renderer *renderer;
-
-static SDL_Surface *sBackground;
-static SDL_Texture *tBackground;
-static SDL_Texture *fusee;
-static SDL_Texture *missile;
-static SDL_Texture *invader;
-
-SDL_Rect bpos;
-SDL_Rect mpos;
-SDL_Rect missilepos;
-
-
-
-struct enemy_t {
-    SDL_Rect invaderpos;
-    unsigned int alive;
-};
-
-struct invaders_t {
-    
-    struct enemy_t enemy[5][10];
-    unsigned int killed;
-   	int state;
-    int state_speed;
-    Uint32 state_time;
-
-};
-
-struct invaders_t invaders;
-
-int right, left, up = 0;
+Mix_Music *music;
 
 void init()
 {
-    
     if (SDL_Init(SDL_INIT_AUDIO|SDL_INIT_VIDEO|SDL_INIT_EVENTS) < 0)
     {
-        printf("error\n");
+        printf("Display error\n");
+        exit(1);
+    }
+    if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
+    {
+        printf("music error\n");
         exit(1);
     }
     window = SDL_CreateWindow("SPACE INVAIDERS", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
     renderer = SDL_CreateRenderer(window, -1, 0);
-    
-    bpos.x = 0;
-    bpos.y = 0;
-    bpos.w = SCREEN_WIDTH;
-    bpos.h = SCREEN_HEIGHT;
-    
-    mpos.x = 50;
-    mpos.y = SCREEN_HEIGHT - 100;
-    mpos.w = 81;
-    mpos.h = 50;
-    
-    
-}
-
-void init_invaders() {
-    
-
-    invaders.killed = 0;
-    invaders.state_speed = 1000;
-    invaders.state_time = SDL_GetTicks();
-
-    int i,j;
-    int x = 100;
-    int y = 50;
-    
-    for (i = 0; i < 5; i++) {
-        
-        for (j = 0; j < 10; j++) {
-            
-            invaders.enemy[i][j].alive = 1;
-            invaders.enemy[i][j].invaderpos.x = x;
-            invaders.enemy[i][j].invaderpos.y = y;
-            invaders.enemy[i][j].invaderpos.w = E_WIDTH;
-            invaders.enemy[i][j].invaderpos.h = E_HEIGHT;
-            
-            x += E_WIDTH + 30;
-        }
-        
-        x = 100;
-        y += E_HEIGHT + 30;
-    }
-}
-
-void display_missile() {
-    
-    missilepos.x = mpos.x + (mpos.w / 2) - (missilepos.w /2);
-    missilepos.y = mpos.y - missilepos.h;
-    missilepos.h = 24;
-    missilepos.w = 10;
-    
-    SDL_RenderCopy(renderer, fusee, 0, &missilepos);
-    
-}
-
-void display_invaders() {
-    
-    SDL_Rect src, dest;
-    int i,j;
-    
-    src.w = E_WIDTH;
-    src.h = E_HEIGHT;
-    
-    for (i = 0; i < 5; i++) {
-        
-        for (j = 0; j < 10; j++) {
-            
-            if (invaders.enemy[i][j].alive == 1) {
-                
-                //purple
-                if(i == 0) {
-                    
-                    if (invaders.state == 0) {
-                        
-                        src.x = 0;
-                        src.y = 0;
-                        
-                    } else {
-                        
-                        src.x = 30;
-                        src.y = 0;
-                    }
-                    
-                    //green
-                } else if (i > 0 && i < 3) {
-                    
-                    if (invaders.state == 0) {
-                        
-                        src.x = 0;
-                        src.y = E_HEIGHT;
-                        
-                    } else {
-                        
-                        src.x = 30;
-                        src.y = E_HEIGHT;
-                    }
-                    
-                    //red
-                } else {
-                    
-                    if (invaders.state == 0) {
-                        
-                        src.x = 0;
-                        src.y = E_HEIGHT * 2;
-                        
-                    } else {
-                        
-                        src.x = 30;
-                        src.y = E_HEIGHT * 2;	
-                    }
-                }
-                
-                dest.x = invaders.enemy[i][j].invaderpos.x;
-                dest.y = invaders.enemy[i][j].invaderpos.y;
-                dest.w = invaders.enemy[i][j].invaderpos.w;
-                dest.h = invaders.enemy[i][j].invaderpos.h;
-                
-//              SDL_BlitSurface(invadersmap, &src, sBackground, &dest);
-                SDL_RenderCopy(renderer, invader, 0, &dest);
-            }
-        }
-    }
+    backgroundpos.x = 0;
+    backgroundpos.y = 0;
+    backgroundpos.w = SCREEN_WIDTH;
+    backgroundpos.h = SCREEN_HEIGHT;
+    playerpos.x = 50;
+    playerpos.y = SCREEN_HEIGHT - 100;
+    playerpos.w = 81;
+    playerpos.h = 50;
 }
 
 void destroy()
 {
+    Mix_FreeMusic(music);
     SDL_DestroyTexture(tBackground);
     SDL_FreeSurface(sBackground);
     SDL_DestroyRenderer(renderer);
@@ -194,17 +50,32 @@ void destroy()
 
 void load()
 {
-    int w, h;
+    int w;
+    int h;
+
     tBackground = IMG_LoadTexture(renderer, "background.jpg");
     fusee = IMG_LoadTexture(renderer, "fusee.png");
-    invader = IMG_LoadTexture(renderer, "invader.png");
-    missile = IMG_LoadTexture(renderer, "missile.png");
     SDL_QueryTexture(tBackground, 0, 0, &w, &h);
+    music = Mix_LoadMUS("spaceinvaders1.mpeg");
+    if (!music)
+    {
+        printf("Mix_LoadMUS: %s\n", Mix_GetError());
+    }
 }
 
 void event()
 {
+    int right;
+    int left;
+    int up;
+    Uint32 towait;
+    Uint32 time;
     SDL_Event e;
+
+    right = 0;
+    left = 0;
+    up = 0;
+    time = SDL_GetTicks();
     while (SDL_PollEvent(&e))
     {
         switch (e.type)
@@ -235,62 +106,56 @@ void event()
                     case SDLK_LEFT:
                         left = 0;
                         break;
-                
                 }
             break;
             default:
             break;
-                
         }
+    }
+    if (right)
+    {
+        playerpos.x += 8;
+    }
+    if (left)
+    {
+        playerpos.x -= 8;
+    }
+    if (up) {
+        display_missile();
+//        move_missile_up();
+    }
+    SDL_RenderPresent(renderer);
+    towait = SDL_GetTicks() - time;
+    if (towait < 16)
+    {
+        SDL_Delay(16 - towait);
     }
 }
 
-int i = 1;
-
 int main(int argc, const char * argv[])
 {
-    
-    // insert code here...
-    
+    int i;
+
+    i = 1;
     init();
-    init_invaders();
     load();
-    while (i == 1) {
-        
-        Uint32 towait;
-        Uint32 time = SDL_GetTicks();
-        
-        
+    if (Mix_PlayMusic(music, 0) < 0)
+    {
+        printf("error\n");
+        exit(1);
+    }
+    init_missile();
+    init_invaders();
+    while (i == 1)
+    {
         SDL_RenderClear(renderer);
-        SDL_RenderCopy(renderer, tBackground, 0, &bpos);
-        SDL_RenderCopy(renderer, fusee, 0, &mpos);
+        SDL_RenderCopy(renderer, tBackground, 0, &backgroundpos);
+        SDL_RenderCopy(renderer, fusee, 0, &playerpos);
         display_invaders();
         event();
-        
-        if (right)
-        {
-            mpos.x += 8;
-        }
-        if (left)
-        {
-            mpos.x -= 8;
-        }
-        if (up) {
-            display_missile();
-        }
-        
-        SDL_RenderPresent(renderer);
-
-        
-        towait = SDL_GetTicks() - time;
-        if (towait < 16) {
-            SDL_Delay(16 - towait);
-            if (towait < 16) {
-                SDL_Delay(16 - towait);
-            }
-        }
+        move_invaders_down();
+        move_missile_up();
     }
-    
     destroy();
     return 0;
 }
