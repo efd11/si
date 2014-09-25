@@ -18,9 +18,13 @@
 SDL_Window *window;
 SDL_Renderer *renderer;
 
+
+
 static SDL_Surface *sBackground;
+static SDL_Surface *sText;
 static SDL_Texture *tBackground;
 static SDL_Texture *fusee;
+static SDL_Texture *tText;
 
 
 
@@ -38,5 +42,8 @@ void move_invaders_down();
 void display_missile();
 void init_missile();
 void move_missile_up();
+
+
+int gameover;
 
 #endif
