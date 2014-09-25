@@ -10,9 +10,11 @@
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
 #include <SDL2_mixer/SDL_mixer.h>
+#include "SDL2_ttf/SDL_ttf.h"
 #include "spaceInvaders.h"
 
 Mix_Music *music;
+TTF_Font *font;
 
 void init()
 {
@@ -21,6 +23,9 @@ void init()
         printf("Display error\n");
         exit(1);
     }
+    
+    TTF_Init();
+    
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
     {
         printf("Music error\n");
@@ -47,6 +52,17 @@ void load()
     fusee = loadtexture(renderer, "fusee.png");
     SDL_QueryTexture(tBackground, 0, 0, &w, &h);
     music = Mix_LoadMUS("spaceinvaders1.mpeg");
+    font = TTF_OpenFont("Arial.ttf", 25);
+    if (!font)
+    {
+        printf("TTF_OpenFont: %s\n", TTF_GetError());
+    }
+    sText = TTF_RenderText_Solid(font, "GAME OVER", color);
+    if (!sText)
+    {
+        printf("TTF_RenderText_Solid: %s\n", TTF_GetError());
+    }
+    tText = SDL_CreateTextureFromSurface(renderer, sText);
     if (!music)
     {
         printf("Mix_LoadMUS Error: %s\n", Mix_GetError());
@@ -65,9 +81,7 @@ void destroy()
 
 int main(int argc, const char * argv[])
 {
-    int i;
-
-    i = 1;
+    int quit = 1;
     init();
     load();
     if (Mix_PlayMusic(music, 0) < 0)
@@ -77,7 +91,7 @@ int main(int argc, const char * argv[])
     }
     init_missile();
     init_invaders();
-    while (i == 1)
+    while (quit)
     {
         SDL_RenderClear(renderer);
         SDL_RenderCopy(renderer, tBackground, 0, &backgroundpos);
@@ -85,6 +99,9 @@ int main(int argc, const char * argv[])
         display_invaders();
         handle_events();
         move_invaders_down();
+        if (gameover == 1)
+            SDL_RenderCopy(renderer, tText, 0, &backgroundpos);
+        event();
         move_missile_up();
     }
     destroy();

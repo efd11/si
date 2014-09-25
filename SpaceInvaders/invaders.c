@@ -9,9 +9,13 @@
 #include <stdio.h>
 #include <SDL2/SDL.h>
 #include <SDL2_image/SDL_image.h>
+#include "SDL2_ttf/SDL_ttf.h"
 #include "spaceInvaders.h"
 
 static SDL_Texture *invader;
+
+
+
 
 struct enemy_t {
     SDL_Rect invaderpos;
@@ -57,6 +61,12 @@ void init_invaders()
     }
 }
 
+void game_over()
+{
+    printf("GAME OVER");
+    SDL_RenderCopy(renderer, tText, 0, &backgroundpos);
+}
+
 void display_invaders()
 {
     SDL_Rect dest;
@@ -72,8 +82,11 @@ void display_invaders()
             dest.w = invaders.enemy[i][j].invaderpos.w;
             dest.h = invaders.enemy[i][j].invaderpos.h;
             SDL_RenderCopy(renderer, invader, 0, &dest);
+
         }
     }
+
+    
 }
 
 void move_invaders_down()
@@ -84,6 +97,13 @@ void move_invaders_down()
     for (i = 0; i < 5; i++) {
 		for (j = 0; j < 10; j++) {
             invaders.enemy[i][j].invaderpos.y += 1;
+            
+            if (invaders.enemy[i][j].invaderpos.y >= playerpos.y) {
+//                printf("%d\n", invaders.enemy[i][j].invaderpos.y);
+//                printf("%d\n", playerpos.y);
+//                game_over();
+                gameover = 1;
+            }
 		}
 	}
 }

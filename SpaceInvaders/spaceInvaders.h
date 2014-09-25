@@ -18,9 +18,13 @@
 SDL_Window *window;
 SDL_Renderer *renderer;
 
+
+
 static SDL_Surface *sBackground;
+static SDL_Surface *sText;
 static SDL_Texture *tBackground;
 static SDL_Texture *fusee;
+static SDL_Texture *tText;
 
 SDL_Rect backgroundpos;
 SDL_Rect playerpos;

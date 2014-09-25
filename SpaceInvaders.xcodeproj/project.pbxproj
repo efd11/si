@@ -31,6 +31,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 7;
 			files = (
+				48F3344C19D4BBB9007EF89E /* Arial.ttf in CopyFiles */,
 				48D0B9CC19D35447003F32F8 /* spaceinvaders1.mpeg in CopyFiles */,
 				48D0B9C619D3489E003F32F8 /* Happy pharrell williams.mp3 in CopyFiles */,
 				48D0B9C419D347EC003F32F8 /* piou.wav in CopyFiles */,
@@ -68,6 +69,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				48F3344A19D4AAA2007EF89E /* SDL2_ttf.framework in Frameworks */,
 				48D0B9C019D33F30003F32F8 /* SDL2_mixer.framework in Frameworks */,
 				480F1FCA19CEDDF900256A55 /* SDL2_image.framework in Frameworks */,
 				480F1FC819CECF4000256A55 /* SDL2.framework in Frameworks */,
@@ -80,6 +82,7 @@
 		9C443B0919CE30D9002A0297 = {
 			isa = PBXGroup;
 			children = (
+				48F3344919D4AAA2007EF89E /* SDL2_ttf.framework */,
 				48D0B9BF19D33F30003F32F8 /* SDL2_mixer.framework */,
 				480F1FC919CEDDF900256A55 /* SDL2_image.framework */,
 				480F1FC719CECF4000256A55 /* SDL2.framework */,
@@ -113,6 +116,7 @@
 		9C90DE7119CF1E3A0000569B /* Ressources */ = {
 			isa = PBXGroup;
 			children = (
+				48F3344B19D4BBB0007EF89E /* Arial.ttf */,
 				48D0B9CB19D3543E003F32F8 /* spaceinvaders1.mpeg */,
 				48D0B9C519D34887003F32F8 /* Happy pharrell williams.mp3 */,
 				48D0B9C319D347D7003F32F8 /* piou.wav */,
