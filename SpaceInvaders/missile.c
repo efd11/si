@@ -24,35 +24,16 @@ struct missile_t {
 	unsigned int alive;
 };
 
-void init_missile()
-{
-
-}
-
-//
-//void init_missile(struct missile_t b[], int q) {
-//
-//	int i;
-//	for (i = 0; i < q; i++) {
-//
-//		b[i].alive = 0;
-//		b[i].missilepos.x = 0;
-//		b[i].missilepos.y = 0;
-//		b[i].missilepos.w = 10;
-//		b[i].missilepos.h = 24;
-//	}
-//}
-
 void display_missile()
 {
     int i;
-    
+
     missilepos.x = playerpos.x + (playerpos.w / 2) - (missilepos.w /2);
     missilepos.y = playerpos.y - (missilepos.h + 10);
     missilepos.h = 24;
     missilepos.w = 10;
     
-    fusee = IMG_LoadTexture(renderer, "fusee.png");
+    fusee = loadtexture(renderer, "fusee.png");
     SDL_RenderCopy(renderer, fusee, NULL, &missilepos);
 
     for (i = 0; i <= 100; i++) {

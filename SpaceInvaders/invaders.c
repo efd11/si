@@ -39,8 +39,8 @@ void init_invaders()
     int x = 100;
     int y = 50;
     
-    invader = IMG_LoadTexture(renderer, "invader.png");
-    
+    invader = loadtexture(renderer, "invader.png");
+
     for (i = 0; i < 5; i++) {
         
         for (j = 0; j < 10; j++)

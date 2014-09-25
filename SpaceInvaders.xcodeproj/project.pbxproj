@@ -13,11 +13,12 @@
 		48D0B9C019D33F30003F32F8 /* SDL2_mixer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48D0B9BF19D33F30003F32F8 /* SDL2_mixer.framework */; };
 		48D0B9C419D347EC003F32F8 /* piou.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = 48D0B9C319D347D7003F32F8 /* piou.wav */; };
 		48D0B9C619D3489E003F32F8 /* Happy pharrell williams.mp3 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 48D0B9C519D34887003F32F8 /* Happy pharrell williams.mp3 */; };
-		48D0B9C819D34D0D003F32F8 /* vache.wav in CopyFiles */ = {isa = PBXBuildFile; fileRef = 48D0B9C719D34D05003F32F8 /* vache.wav */; };
 		48D0B9CA19D3508C003F32F8 /* main.c in Sources */ = {isa = PBXBuildFile; fileRef = 48D0B9C919D3508C003F32F8 /* main.c */; };
 		48D0B9CC19D35447003F32F8 /* spaceinvaders1.mpeg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 48D0B9CB19D3543E003F32F8 /* spaceinvaders1.mpeg */; };
 		48D0B9CE19D35BD2003F32F8 /* invaders.c in Sources */ = {isa = PBXBuildFile; fileRef = 48D0B9CD19D35BD2003F32F8 /* invaders.c */; };
 		48D0B9D119D35DA0003F32F8 /* missile.c in Sources */ = {isa = PBXBuildFile; fileRef = 48D0B9D019D35DA0003F32F8 /* missile.c */; };
+		9C23D53C19D4A78C00E0C956 /* xfunctions.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C23D53B19D4A78C00E0C956 /* xfunctions.c */; };
+		9C23D53E19D4AEFF00E0C956 /* events.c in Sources */ = {isa = PBXBuildFile; fileRef = 9C23D53D19D4AEFF00E0C956 /* events.c */; };
 		9C90DE7719CF306F0000569B /* fusee.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9C90DE7619CF30660000569B /* fusee.png */; };
 		9C90DE7919CF30BC0000569B /* background.jpg in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9C90DE7819CF30B40000569B /* background.jpg */; };
 		9C90DE7B19CF52570000569B /* invader.png in CopyFiles */ = {isa = PBXBuildFile; fileRef = 9C90DE7A19CF52430000569B /* invader.png */; };
@@ -31,7 +32,6 @@
 			dstSubfolderSpec = 7;
 			files = (
 				48D0B9CC19D35447003F32F8 /* spaceinvaders1.mpeg in CopyFiles */,
-				48D0B9C819D34D0D003F32F8 /* vache.wav in CopyFiles */,
 				48D0B9C619D3489E003F32F8 /* Happy pharrell williams.mp3 in CopyFiles */,
 				48D0B9C419D347EC003F32F8 /* piou.wav in CopyFiles */,
 				480F1FCE19CF59D900256A55 /* missile.png in CopyFiles */,
@@ -50,12 +50,13 @@
 		48D0B9BF19D33F30003F32F8 /* SDL2_mixer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SDL2_mixer.framework; path = ../../../../../../Library/Frameworks/SDL2_mixer.framework; sourceTree = "<group>"; };
 		48D0B9C319D347D7003F32F8 /* piou.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = piou.wav; sourceTree = "<group>"; };
 		48D0B9C519D34887003F32F8 /* Happy pharrell williams.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Happy pharrell williams.mp3"; sourceTree = "<group>"; };
-		48D0B9C719D34D05003F32F8 /* vache.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = vache.wav; sourceTree = "<group>"; };
 		48D0B9C919D3508C003F32F8 /* main.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = main.c; sourceTree = "<group>"; };
 		48D0B9CB19D3543E003F32F8 /* spaceinvaders1.mpeg */ = {isa = PBXFileReference; lastKnownFileType = video.mpeg; path = spaceinvaders1.mpeg; sourceTree = "<group>"; };
 		48D0B9CD19D35BD2003F32F8 /* invaders.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = invaders.c; sourceTree = "<group>"; };
 		48D0B9CF19D35C32003F32F8 /* spaceInvaders.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = spaceInvaders.h; sourceTree = "<group>"; };
 		48D0B9D019D35DA0003F32F8 /* missile.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = missile.c; sourceTree = "<group>"; };
+		9C23D53B19D4A78C00E0C956 /* xfunctions.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = xfunctions.c; sourceTree = "<group>"; };
+		9C23D53D19D4AEFF00E0C956 /* events.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = events.c; sourceTree = "<group>"; };
 		9C443B1219CE30D9002A0297 /* SpaceInvaders */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = SpaceInvaders; sourceTree = BUILT_PRODUCTS_DIR; };
 		9C90DE7619CF30660000569B /* fusee.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = fusee.png; sourceTree = "<group>"; };
 		9C90DE7819CF30B40000569B /* background.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = background.jpg; sourceTree = "<group>"; };
@@ -103,6 +104,8 @@
 				48D0B9CD19D35BD2003F32F8 /* invaders.c */,
 				48D0B9CF19D35C32003F32F8 /* spaceInvaders.h */,
 				48D0B9D019D35DA0003F32F8 /* missile.c */,
+				9C23D53B19D4A78C00E0C956 /* xfunctions.c */,
+				9C23D53D19D4AEFF00E0C956 /* events.c */,
 			);
 			path = SpaceInvaders;
 			sourceTree = "<group>";
@@ -111,7 +114,6 @@
 			isa = PBXGroup;
 			children = (
 				48D0B9CB19D3543E003F32F8 /* spaceinvaders1.mpeg */,
-				48D0B9C719D34D05003F32F8 /* vache.wav */,
 				48D0B9C519D34887003F32F8 /* Happy pharrell williams.mp3 */,
 				48D0B9C319D347D7003F32F8 /* piou.wav */,
 				9C90DE7819CF30B40000569B /* background.jpg */,
@@ -174,7 +176,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				48D0B9CA19D3508C003F32F8 /* main.c in Sources */,
+				9C23D53E19D4AEFF00E0C956 /* events.c in Sources */,
 				48D0B9CE19D35BD2003F32F8 /* invaders.c in Sources */,
+				9C23D53C19D4A78C00E0C956 /* xfunctions.c in Sources */,
 				48D0B9D119D35DA0003F32F8 /* missile.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,10 +23,10 @@ void init()
     }
     if (Mix_OpenAudio(44100, MIX_DEFAULT_FORMAT, 2, 2048) < 0)
     {
-        printf("music error\n");
+        printf("Music error\n");
         exit(1);
     }
-    window = SDL_CreateWindow("SPACE INVAIDERS", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
+    window = createwindow("SPACE INVAIDERS", 0, 0, SCREEN_WIDTH, SCREEN_HEIGHT, 0);
     renderer = SDL_CreateRenderer(window, -1, 0);
     backgroundpos.x = 0;
     backgroundpos.y = 0;
@@ -36,6 +36,21 @@ void init()
     playerpos.y = SCREEN_HEIGHT - 100;
     playerpos.w = 81;
     playerpos.h = 50;
+}
+
+void load()
+{
+    int w;
+    int h;
+    
+    tBackground = loadtexture(renderer, "background.jpg");
+    fusee = loadtexture(renderer, "fusee.png");
+    SDL_QueryTexture(tBackground, 0, 0, &w, &h);
+    music = Mix_LoadMUS("spaceinvaders1.mpeg");
+    if (!music)
+    {
+        printf("Mix_LoadMUS Error: %s\n", Mix_GetError());
+    }
 }
 
 void destroy()
@@ -48,90 +63,6 @@ void destroy()
     SDL_Quit();
 }
 
-void load()
-{
-    int w;
-    int h;
-
-    tBackground = IMG_LoadTexture(renderer, "background.jpg");
-    fusee = IMG_LoadTexture(renderer, "fusee.png");
-    SDL_QueryTexture(tBackground, 0, 0, &w, &h);
-    music = Mix_LoadMUS("spaceinvaders1.mpeg");
-    if (!music)
-    {
-        printf("Mix_LoadMUS: %s\n", Mix_GetError());
-    }
-}
-
-void event()
-{
-    int right;
-    int left;
-    int up;
-    Uint32 towait;
-    Uint32 time;
-    SDL_Event e;
-
-    right = 0;
-    left = 0;
-    up = 0;
-    time = SDL_GetTicks();
-    while (SDL_PollEvent(&e))
-    {
-        switch (e.type)
-        {
-            case SDL_QUIT:
-                exit(0);
-                break;
-            case SDL_KEYDOWN:
-                switch (e.key.keysym.sym)
-                {
-                    case SDLK_RIGHT:
-                        right = 1;
-                        break;
-                    case SDLK_LEFT:
-                        left = 1;
-                        break;
-                    case SDLK_UP:
-                        up = 1;
-                        break;
-                }
-            break;
-            case SDL_KEYUP:
-                switch (e.key.keysym.sym)
-                {
-                    case SDLK_RIGHT:
-                        right = 0;
-                        break;
-                    case SDLK_LEFT:
-                        left = 0;
-                        break;
-                }
-            break;
-            default:
-            break;
-        }
-    }
-    if (right)
-    {
-        playerpos.x += 8;
-    }
-    if (left)
-    {
-        playerpos.x -= 8;
-    }
-    if (up) {
-        display_missile();
-//        move_missile_up();
-    }
-    SDL_RenderPresent(renderer);
-    towait = SDL_GetTicks() - time;
-    if (towait < 16)
-    {
-        SDL_Delay(16 - towait);
-    }
-}
-
 int main(int argc, const char * argv[])
 {
     int i;
@@ -141,7 +72,7 @@ int main(int argc, const char * argv[])
     load();
     if (Mix_PlayMusic(music, 0) < 0)
     {
-        printf("error\n");
+        printf("PlayMusic Error\n");
         exit(1);
     }
     init_missile();
@@ -152,7 +83,7 @@ int main(int argc, const char * argv[])
         SDL_RenderCopy(renderer, tBackground, 0, &backgroundpos);
         SDL_RenderCopy(renderer, fusee, 0, &playerpos);
         display_invaders();
-        event();
+        handle_events();
         move_invaders_down();
         move_missile_up();
     }
